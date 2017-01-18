@@ -27,7 +27,7 @@ class AddressWidget(forms.TextInput):
 
     class Media:
         js = (
-            'https://maps.googleapis.com/maps/api/js?libraries=places&key={}'.format(
+            'https://maps.googleapis.com/maps/api/js?libraries=places&v=3&key={}'.format(
                 settings.GOOGLE_MAPS_API_KEY),
             'js/jquery.geocomplete.min.js',
             'address/js/address.js')
