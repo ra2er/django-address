@@ -168,7 +168,7 @@ class Country(models.Model):
 class State(models.Model):
     name = models.CharField(max_length=165, blank=True)
     code = models.CharField(max_length=3, blank=True)
-    country = models.ForeignKey(Country, related_name='states')
+    country = models.ForeignKey(Country, related_name='states', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('name', 'country')
@@ -192,7 +192,7 @@ class State(models.Model):
 class Locality(models.Model):
     name = models.CharField(max_length=165, blank=True)
     postal_code = models.CharField(max_length=10, blank=True)
-    state = models.ForeignKey(State, related_name='localities')
+    state = models.ForeignKey(State, related_name='localities', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Localities'
@@ -220,7 +220,7 @@ class Locality(models.Model):
 class Address(models.Model):
     street_number = models.CharField(max_length=20, blank=True)
     route = models.CharField(max_length=100, blank=True)
-    locality = models.ForeignKey(Locality, related_name='addresses', blank=True, null=True)
+    locality = models.ForeignKey(Locality, related_name='addresses', blank=True, null=True, on_delete=models.CASCADE)
     raw = models.CharField(max_length=200)
     formatted = models.CharField(max_length=200, blank=True)
     latitude = models.FloatField(blank=True, null=True)
